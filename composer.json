@@ -1,5 +1,5 @@
 {
-  "name": "prettus/l5-repository",
+  "name": "curtsheller/l5-repository",
   "description": "Laravel 5|6|7|8|9|10|11 - Repositories to  the database layer",
   "keywords": [
     "laravel",
@@ -11,19 +11,19 @@
   "license": "MIT",
   "authors": [
     {
-      "name": "Anderson Andrade",
-      "homepage": "http://andersonandra.de",
-      "email": "contato@andersonandra.de",
+      "name": "Curt Sheller",
+      "homepage": "https://curtsheller.com",
+      "email": "curt@curtsheller.com",
       "role": "Developer"
     }
   ],
   "homepage": "http://andersao.github.io/l5-repository",
   "support": {
     "email": "contato@andersonandra.de",
-    "issues": "https://github.com/andersao/l5-repository/issues",
-    "wiki": "https://github.com/andersao/l5-repository",
-    "source": "https://github.com/andersao/l5-repository",
-    "docs": "http://andersao.github.io/l5-repository"
+    "issues": "https://github.com/curtsheller/laravel-repository/issues",
+    "wiki": "https://github.com/curtsheller/laravel-repository",
+    "source": "https://github.com/curtsheller/laravel-repository",
+    "docs": "http://github.com/curtsheller/laravel-repository"
   },
   "require": {
     "illuminate/http": "~5.0|~6.0|~7.0|^8.0|^9.0|^10.0|^11.0",
@@ -38,7 +38,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Prettus\\Repository\\": "src/Prettus/Repository/"
+      "CurtSheller\\Repository\\": "src/CurtSheller/Repository/"
     }
   },
   "config": {
@@ -52,7 +52,7 @@
   "extra": {
     "laravel": {
       "providers": [
-        "Prettus\\Repository\\Providers\\RepositoryServiceProvider"
+        "CurtSheller\\Repository\\Providers\\RepositoryServiceProvider"
       ]
     }
   },

@@ -3,9 +3,10 @@
 Laravel Repositories is used to abstract the data layer, making our application more flexible to maintain.
 
 
-#### Forked from: [iEgria/l5-repository](https://github.com/iEgria/l5-repository) which was forked from [prettus/l5-repository, 2.9.*](https://github.com/andersao/l5-repository/tree/2.0.14). The wasn't being updaated for the laastest Laravel versn or just took waasa to long.
+#### Forked from: [iEgria/l5-repository](https://github.com/iEgria/l5-repository) which was forked from [prettus/l5-repository, 2.9.*](https://github.com/andersao/l5-repository). The wasn't being updated for the latest Laravel version or just took was to long to update.
 
 (_docs from andersao/l5-repository_)
+
 You want to know a little more about the Repository pattern? [Read this great article](http://bit.ly/1IdmRNS).
 
 ## Table of Contents
