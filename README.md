@@ -6,9 +6,9 @@ Laravel 5 Repositories is used to abstract the data layer, making our applicatio
 [![Analytics](https://ga-beacon.appspot.com/UA-61050740-1/l5-repository/readme)](https://packagist.org/packages/prettus/l5-repository)
 [![Code Climate](https://codeclimate.com/github/andersao/l5-repository/badges/gpa.svg)](https://codeclimate.com/github/andersao/l5-repository)
 
-#### See versions: [1.0.*](https://github.com/andersao/l5-repository/tree/1.0.4) / [2.0.*](https://github.com/andersao/l5-repository/tree/2.0.14)
-#### Migrate to: [2.0](migration-to-2.0.md) / [2.1](migration-to-2.1.md)
+#### Forked from: [iEgria/l5-repository](https://github.com/iEgria/l5-repository) which was forked from [prettus/l5-repository, 2.9.*](https://github.com/andersao/l5-repository/tree/2.0.14). The wasn't being updaated for the laastest Laravel versn or just took waasa to long.
 
+(_docs from andersao/l5-repository_)
 You want to know a little more about the Repository pattern? [Read this great article](http://bit.ly/1IdmRNS).
 
 ## Table of Contents
@@ -51,12 +51,12 @@ You want to know a little more about the Repository pattern? [Read this great ar
 Execute the following command to get the latest version of the package:
 
 ```terminal
-composer require prettus/l5-repository
+composer require curtsheller/laravel-repository
 ```
 
 ### Laravel
 
-#### >= laravel5.5
+#### >= laravel 11
 
 ServiceProvider will be attached automatically
 
@@ -67,25 +67,25 @@ In your `config/app.php` add `Prettus\Repository\Providers\RepositoryServiceProv
 ```php
 'providers' => [
     ...
-    Prettus\Repository\Providers\RepositoryServiceProvider::class,
+    CurtSheller\Repository\Providers\RepositoryServiceProvider::class,
 ],
 ```
 
 If Lumen
 
 ```php
-$app->register(Prettus\Repository\Providers\LumenRepositoryServiceProvider::class);
+$app->register(CurtSheller\Repository\Providers\LumenRepositoryServiceProvider::class);
 ```
 
 Publish Configuration
 
 ```shell
-php artisan vendor:publish --provider "Prettus\Repository\Providers\RepositoryServiceProvider"
+php artisan vendor:publish --provider "CurtSheller\Repository\Providers\RepositoryServiceProvider"
 ```
 
 ## Methods
 
-### Prettus\Repository\Contracts\RepositoryInterface
+### CurtSheller\Repository\Contracts\RepositoryInterface
 
 - all($columns = array('*'))
 - first($columns = array('*'))
@@ -113,7 +113,7 @@ php artisan vendor:publish --provider "Prettus\Repository\Providers\RepositorySe
 - skipPresenter($status = true);
 
 
-### Prettus\Repository\Contracts\RepositoryCriteriaInterface
+### CurtSheller\Repository\Contracts\RepositoryCriteriaInterface
 
 - pushCriteria($criteria)
 - popCriteria($criteria)
@@ -122,7 +122,7 @@ php artisan vendor:publish --provider "Prettus\Repository\Providers\RepositorySe
 - skipCriteria($status = true)
 - getFieldsSearchable()
 
-### Prettus\Repository\Contracts\CacheableInterface
+### CurtSheller\Repository\Contracts\CacheableInterface
 
 - setCacheRepository(CacheRepository $repository)
 - getCacheRepository()
@@ -130,20 +130,20 @@ php artisan vendor:publish --provider "Prettus\Repository\Providers\RepositorySe
 - getCacheTime()
 - skipCache($status = true)
 
-### Prettus\Repository\Contracts\PresenterInterface
+### CurtSheller\Repository\Contracts\PresenterInterface
 
 - present($data);
 
-### Prettus\Repository\Contracts\Presentable
+### CurtSheller\Repository\Contracts\Presentable
 
 - setPresenter(PresenterInterface $presenter);
 - presenter();
 
-### Prettus\Repository\Contracts\CriteriaInterface
+### CurtSheller\Repository\Contracts\CriteriaInterface
 
 - apply($model, RepositoryInterface $repository);
 
-### Prettus\Repository\Contracts\Transformable
+### CurtSheller\Repository\Contracts\Transformable
 
 - transform();
 
@@ -174,7 +174,7 @@ class Post extends Eloquent { // or Ardent, Or any other Model Class
 ```php
 namespace App;
 
-use Prettus\Repository\Eloquent\BaseRepository;
+use CurtSheller\Repository\Eloquent\BaseRepository;
 
 class PostRepository extends BaseRepository {
 
@@ -661,23 +661,23 @@ Request all data without filter by request
 
 Conducting research in the repository
 
-`http://prettus.local/users?search=John%20Doe`
+`http://curtsheller.local/users?search=John%20Doe`
 
 or
 
-`http://prettus.local/users?search=John&searchFields=name:like`
+`http://curtsheller.local/users?search=John&searchFields=name:like`
 
 or
 
-`http://prettus.local/users?search=john@gmail.com&searchFields=email:=`
+`http://curtsheller.local/users?search=john@gmail.com&searchFields=email:=`
 
 or
 
-`http://prettus.local/users?search=name:John Doe;email:john@gmail.com`
+`http://curtsheller.local/users?search=name:John Doe;email:john@gmail.com`
 
 or
 
-`http://prettus.local/users?search=name:John;email:john@gmail.com&searchFields=name:like;email:=`
+`http://curtsheller.local/users?search=name:John;email:john@gmail.com&searchFields=name:like;email:=`
 
 ```json
 [
@@ -693,10 +693,10 @@ or
 
 You can use params "search" without full params "searchFields".
 
-`http://prettus.local/users?search=id:2;age:17;email:john@gmail.com&searchFields='id':=`
+`http://curtsheller.local/users?search=id:2;age:17;email:john@gmail.com&searchFields='id':=`
 
 By default RequestCriteria makes its queries using the **OR** comparison operator for each query parameter.
-`http://prettus.local/users?search=age:17;email:john@gmail.com`
+`http://curtsheller.local/users?search=age:17;email:john@gmail.com`
 
 The above example will execute the following query:
 ``` sql
@@ -705,7 +705,7 @@ SELECT * FROM users WHERE age = 17 OR email = 'john@gmail.com';
 
 In order for it to query using the **AND**, pass the *searchJoin* parameter as shown below:
 
-`http://prettus.local/users?search=age:17;email:john@gmail.com&searchJoin=and`
+`http://curtsheller.local/users?search=age:17;email:john@gmail.com&searchJoin=and`
 
 
 
@@ -713,7 +713,7 @@ In order for it to query using the **AND**, pass the *searchJoin* parameter as s
 
 Filtering fields
 
-`http://prettus.local/users?filter=id;name`
+`http://curtsheller.local/users?filter=id;name`
 
 ```json
 [
@@ -734,7 +734,7 @@ Filtering fields
 
 Sorting the results
 
-`http://prettus.local/users?filter=id;name&orderBy=id&sortedBy=desc`
+`http://curtsheller.local/users?filter=id;name&orderBy=id&sortedBy=desc`
 
 ```json
 [
@@ -755,7 +755,7 @@ Sorting the results
 
 Sorting through related tables
 
-`http://prettus.local/users?orderBy=posts|title&sortedBy=desc`
+`http://curtsheller.local/users?orderBy=posts|title&sortedBy=desc`
 
 Query will have something like this
 
@@ -767,7 +767,7 @@ ORDER BY title
 ...
 ```
 
-`http://prettus.local/users?orderBy=posts:custom_id|posts.title&sortedBy=desc`
+`http://curtsheller.local/users?orderBy=posts:custom_id|posts.title&sortedBy=desc`
 
 Query will have something like this
 
@@ -779,7 +779,7 @@ ORDER BY posts.title
 ...
 ```
 
-`http://prettus.local/users?orderBy=posts:custom_id,other_id|posts.title&sortedBy=desc`
+`http://curtsheller.local/users?orderBy=posts:custom_id,other_id|posts.title&sortedBy=desc`
 
 Query will have something like this
 
@@ -793,7 +793,7 @@ ORDER BY posts.title
 
 Sorting multiple columns same sortedBy
 
-`http://prettus.local/users?orderBy=name;created_at&sortedBy=desc`
+`http://curtsheller.local/users?orderBy=name;created_at&sortedBy=desc`
 
 Result will have something like this
 
@@ -820,7 +820,7 @@ Result will have something like this
 
 Sorting multiple columns difference sortedBy
 
-`http://prettus.local/users?orderBy=name;created_at&sortedBy=desc;asc`
+`http://curtsheller.local/users?orderBy=name;created_at&sortedBy=desc;asc`
 
 Result will have something like this
 
@@ -846,11 +846,11 @@ Result will have something like this
 
 Add relationship
 
-`http://prettus.local/users?with=groups`
+`http://curtsheller.local/users?with=groups`
 
 Between filter
 
-`http://prettus.local/product?search=price:100,500&searchFields=price:between`
+`http://curtsheller.local/product?search=price:100,500&searchFields=price:between`
 
 Result will have something like this
 
@@ -876,7 +876,7 @@ Result will have something like this
 
 WhereIn filter
 
-`http://prettus.local/product?search=price:300,500&searchFields=price:in`
+`http://curtsheller.local/product?search=price:300,500&searchFields=price:in`
 
 Result will have something like this
 
@@ -903,9 +903,9 @@ Add a layer of cache easily to your repository
 Implements the interface CacheableInterface and use CacheableRepository Trait.
 
 ```php
-use Prettus\Repository\Eloquent\BaseRepository;
-use Prettus\Repository\Contracts\CacheableInterface;
-use Prettus\Repository\Traits\CacheableRepository;
+use CurtSheller\Repository\Eloquent\BaseRepository;
+use CurtSheller\Repository\Contracts\CacheableInterface;
+use CurtSheller\Repository\Traits\CacheableRepository;
 
 class PostRepository extends BaseRepository implements CacheableInterface {
 
@@ -967,9 +967,9 @@ You can change the cache settings in the file *config/repository.php* and also d
 It is possible to override these settings directly in the repository.
 
 ```php
-use Prettus\Repository\Eloquent\BaseRepository;
-use Prettus\Repository\Contracts\CacheableInterface;
-use Prettus\Repository\Traits\CacheableRepository;
+use CurtSheller\Repository\Eloquent\BaseRepository;
+use CurtSheller\Repository\Contracts\CacheableInterface;
+use CurtSheller\Repository\Traits\CacheableRepository;
 
 class PostRepository extends BaseRepository implements CacheableInterface {
 
@@ -1003,7 +1003,7 @@ Easy validation with `prettus/laravel-validator`
 In the example below, we define some rules for both creation and edition
 
 ```php
-use \Prettus\Validator\LaravelValidator;
+use \CurtSheller\Validator\LaravelValidator;
 
 class PostValidator extends LaravelValidator {
 
@@ -1019,8 +1019,8 @@ class PostValidator extends LaravelValidator {
 To define specific rules, proceed as shown below:
 
 ```php
-use \Prettus\Validator\Contracts\ValidatorInterface;
-use \Prettus\Validator\LaravelValidator;
+use \CurtSheller\Validator\Contracts\ValidatorInterface;
+use \CurtSheller\Validator\LaravelValidator;
 
 class PostValidator extends LaravelValidator {
 
@@ -1041,8 +1041,8 @@ class PostValidator extends LaravelValidator {
 ##### Enabling Validator in your Repository
 
 ```php
-use Prettus\Repository\Eloquent\BaseRepository;
-use Prettus\Repository\Criteria\RequestCriteria;
+use CurtSheller\Repository\Eloquent\BaseRepository;
+use CurtSheller\Repository\Criteria\RequestCriteria;
 
 class PostRepository extends BaseRepository {
 
@@ -1072,9 +1072,9 @@ class PostRepository extends BaseRepository {
 Alternatively, instead of using a class to define its validation rules, you can set your rules directly into the rules repository property, it will have the same effect as a Validation class.
 
 ```php
-use Prettus\Repository\Eloquent\BaseRepository;
-use Prettus\Repository\Criteria\RequestCriteria;
-use Prettus\Validator\Contracts\ValidatorInterface;
+use CurtSheller\Repository\Eloquent\BaseRepository;
+use CurtSheller\Repository\Criteria\RequestCriteria;
+use CurtSheller\Validator\Contracts\ValidatorInterface;
 
 class PostRepository extends BaseRepository {
 
@@ -1157,7 +1157,7 @@ The command will prompt you for creating a Transformer too if you haven't alread
 ###### Create a Presenter
 
 ```php
-use Prettus\Repository\Presenter\FractalPresenter;
+use CurtSheller\Repository\Presenter\FractalPresenter;
 
 class PostPresenter extends FractalPresenter {
 
@@ -1176,7 +1176,7 @@ class PostPresenter extends FractalPresenter {
 ###### Enabling in your Repository
 
 ```php
-use Prettus\Repository\Eloquent\BaseRepository;
+use CurtSheller\Repository\Eloquent\BaseRepository;
 
 class PostRepository extends BaseRepository {
 
@@ -1205,8 +1205,8 @@ In your model, implement the interface `Prettus\Repository\Contracts\Presentable
 ```php
 namespace App;
 
-use Prettus\Repository\Contracts\Presentable;
-use Prettus\Repository\Traits\PresentableTrait;
+use CurtSheller\Repository\Contracts\Presentable;
+use CurtSheller\Repository\Traits\PresentableTrait;
 
 class Post extends Eloquent implements Presentable {
 
@@ -1246,7 +1246,7 @@ print_r( $post->presenter() ); //It produces an output as array
 You can skip the presenter at every visit and use it on demand directly into the model, for it set the `$skipPresenter` attribute to true in your repository:
 
 ```php
-use Prettus\Repository\Eloquent\BaseRepository;
+use CurtSheller\Repository\Eloquent\BaseRepository;
 
 class PostRepository extends BaseRepository {
 
@@ -1269,7 +1269,7 @@ class PostRepository extends BaseRepository {
 ```php
 namespace App;
 
-use Prettus\Repository\Contracts\Transformable;
+use CurtSheller\Repository\Contracts\Transformable;
 
 class Post extends Eloquent implements Transformable {
      ...
@@ -1289,10 +1289,10 @@ class Post extends Eloquent implements Transformable {
 
 ###### Enabling in your Repository
 
-`Prettus\Repository\Presenter\ModelFractalPresenter` is a Presenter default for Models implementing Transformable
+`CurtSheller\Repository\Presenter\ModelFractalPresenter` is a Presenter default for Models implementing Transformable
 
 ```php
-use Prettus\Repository\Eloquent\BaseRepository;
+use CurtSheller\Repository\Eloquent\BaseRepository;
 
 class PostRepository extends BaseRepository {
 
